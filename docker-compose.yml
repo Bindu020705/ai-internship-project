@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - APP_ENV=production
+      - DATABASE_URL=sqlite:///./water_sustainability.db
+      - IBM_GRANITE_API_KEY=${IBM_GRANITE_API_KEY:-}
+      - IBM_GRANITE_ENDPOINT=${IBM_GRANITE_ENDPOINT:-https://us-south.ml.cloud.ibm.com/ml/v1/deployments/granite-3-8b-instruct/text/generation}
+      - IBM_GRANITE_MODEL=${IBM_GRANITE_MODEL:-ibm/granite-3-8b-instruct}
+    volumes:
+      - ./data:/app/data
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend

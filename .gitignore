@@ -1,0 +1,26 @@
+# Node / Frontend
+node_modules/
+dist/
+.vite/
+
+# Python / Backend
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.coverage
+htmlcov/
+*.db
+*.sqlite
+*.sqlite3
+water_sustainability.db
+backend/water_sustainability.db
+
+# Environment variables
+.env
+.env.local
+
+# Operating System
+.DS_Store
+Thumbs.db
